@@ -7,6 +7,8 @@ do grafo é chamada de ideal se um máximo de nós for preto. A
 coloração é restrita pela regra de que dois nós conectados não 
 podem ser pretos
 
+![image](https://user-images.githubusercontent.com/49438293/135755674-b1646ee5-852d-4cc8-868c-4e820a1f5350.png)
+
 # Entrada </br>
 O grafo é fornecido como um conjunto de nós indicado pelos números 1... n, n ≤ 100 e 
 um conjunto de arestas não direcionadas, indicado por pares de números de nós (n1; n2), 
