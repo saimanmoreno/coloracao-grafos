@@ -1,4 +1,4 @@
-# Algorimot para Resolucão do Problema de Coloração de Grafo em C
+# Algoritmo para Resolucão do Problema de Coloração de Grafo em C
 
 Escrever um programa que tente encontrar uma coloração ideal 
 para um determinado grafo. As cores são aplicadas aos nós do 
