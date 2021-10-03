@@ -1,0 +1,131 @@
+Algoritmo "coloracao_grafos_ideal"
+// Disciplina  : Analise e Sintese de Algoritmos
+// Professor   : Artemisa Moreno
+// Descrição   : Programa que tente encontrar uma coloração ideal para um determinado grafo.
+// Autor(a)    : Simao Moreno 110406
+// Data atual  : 22/05/2020
+
+
+// Seção de Declarações das variáveis
+Var
+
+    // constantes
+    Const
+         VAZIO = 0
+         PRETO = 0
+    
+    // variaveis globais
+    num_nos, max_nos_pretos: inteiro
+    nos, melhores_nos: vetor [1..100] de inteiro
+    matriz_adj: vetor [0..100,0..100] de inteiro
+
+
+// Seção de Definição da Função Calcular
+procedimento calcular (num_no, num_pretos: inteiro)
+
+
+   // Seção de Declarações Internas
+   Var
+      i: inteiro
+      feito: logico
+
+   inicio
+   // Seção de Comandos
+   
+   nos[num_nos] <- PRETO
+   num_pretos <- num_pretos + 1
+   
+   se num_pretos > max_nos_pretos entao
+      max_nos_pretos <- num_pretos
+      feito <- VERDADEIRO
+   fimse
+   
+   para i de 0 ate num_nos passo 1 faca
+        se  matriz_adj[num_no, i] e nos[i] = VAZIO entao
+            nos[i] = 10 + num_no
+        fimse
+   fimpara
+   
+   para i de 0 ate num_nos passo 1 faca
+        se nos[i] = VAZIO entao
+           calcular(i, num_pretos)
+           feito <- VERDADEIRO
+           interrompa
+        fimse
+   fimpara
+   
+   se feito = VERDADEIRO entao
+      melhores_nos <- nos
+   fimse
+   
+   para i de 0 ate num_nos passo 1 faca
+        se nos[i] = 10 + num_no entao
+             nos[i] = VAZIO
+        fimse
+   fimpara
+   
+   nos[num_no] = 10 + num_no
+   num_pretos <- num_pretos - 1
+   
+   para i de 0 ate num_nos passo 1 faca
+        se nos[i] = VAZIO entao
+             calcular(i, num_pretos)
+             interrompa
+        fimse
+   fimpara
+   
+   fimprocedimento
+
+
+// Seção de Comandos, procedimento, funções, operadores, etc...
+Inicio
+
+   num_grafos, num_arestas, n1, n2, i, j, k ,a : inteiro
+   
+   leia(num_grafos)
+   
+   para i de 0 ate num_grafos passo 1 faca
+
+        leia(num_nos, num_aresta)
+        
+        max_nos_pretos <- 0
+        
+        para j de 0 ate num_nos passo 1 faca
+
+             nos[j] = VAZIO
+             para k de 0 ate num_nos passo 1 faca
+
+                  matriz_adj[j, k] = VAZIO
+
+             fimpara
+        fimpara
+        
+        para j de 0 ate num_arestas passo 1 faca
+        
+             leia(n1, n2)
+             
+             se n1 > 0 e n1 <= 100 e n2 > 0 e n2 <= 100 entao
+                se n1 <> n2 entao
+                     matriz_adj[n1-1, n2-1] = 1
+                     matriz_adj[n2-1, n1-1] = 1
+                fimse
+             fimse
+
+        fimpara
+        
+        calcular(0, 0)
+        
+        escreva(max_nos_pretos)
+
+        
+        para j de 0 ate num_pos passo 1 faca
+
+             se melhores_nos[j] = PRETO entao
+                  escreva(j+1)
+             fimse
+             
+        fimpara
+        
+   fimpara
+
+Fimalgoritmo
